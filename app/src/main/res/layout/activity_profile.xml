@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Banner Image -->
+        <ImageView
+            android:id="@+id/bannerImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/kelowna_banner"
+            android:contentDescription="Kelowna banner image" />
+
+        <!-- Profile Avatar -->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-40dp"
+            android:src="@drawable/avatar1"
+            android:contentDescription="Profile avatar" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:text="Kyle K."
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Username -->
+        <TextView
+            android:id="@+id/usernameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="username" />
+
+        <!-- Bio -->
+        <TextView
+            android:id="@+id/bioText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Exploring Kelowna on wheels" />
+
+        <!-- Stats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/distanceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="120 km" />
+
+            <TextView
+                android:id="@+id/visitsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 visits" />
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:backgroundTint="#4CAF50" />
+
+            <Button
+                android:id="@+id/settingsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Settings" />
+        </LinearLayout>
+
+        <!-- Achievements Main Title -->
+        <TextView
+            android:id="@+id/achievementTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:text="Achievements"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/achievementHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Tap a badge to learn more"
+            android:textSize="12sp" />
+
+        <!-- Distance Category -->
+        <TextView
+            android:id="@+id/distanceCategoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Distance Badges"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32" />
+
+        <HorizontalScrollView
+            android:id="@+id/distanceScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/badgeFirstRide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First Ride"
+                    android:backgroundTint="#66BB6A" />
+
+                <Button
+                    android:id="@+id/badge10km"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="10 KM"
+                    android:backgroundTint="#66BB6A" />
+
+                <Button
+                    android:id="@+id/badge50km"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="50 KM"
+                    android:backgroundTint="#66BB6A" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Visit Category -->
+        <TextView
+            android:id="@+id/visitCategoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Visit Badges"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#EF6C00" />
+
+        <HorizontalScrollView
+            android:id="@+id/visitScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/badgeFirstVisit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First Visit"
+                    android:backgroundTint="#FFB74D" />
+
+                <Button
+                    android:id="@+id/badgeFoodie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Foodie"
+                    android:backgroundTint="#FFB74D" />
+
+                <Button
+                    android:id="@+id/badgeLocalTourist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Local Tourist"
+                    android:backgroundTint="#FFB74D" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Consistency Category -->
+        <TextView
+            android:id="@+id/consistencyCategoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Consistency Badges"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#5E35B1" />
+
+        <HorizontalScrollView
+            android:id="@+id/consistencyScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/badgeWeekendCyclist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekend Cyclist"
+                    android:backgroundTint="#9575CD" />
+
+                <Button
+                    android:id="@+id/badgeConsistentRider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Consistent Rider"
+                    android:backgroundTint="#9575CD" />
+
+                <Button
+                    android:id="@+id/badgeEarlyBird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Early Bird"
+                    android:backgroundTint="#9575CD" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</ScrollView>
