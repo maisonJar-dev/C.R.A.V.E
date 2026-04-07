@@ -51,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
         Leaderboard_Model.Leaderboard_Heap.populateDatabase();
+        Leaderboard_Model.Leaderboard_Heap.populateQueue();
         nameText = findViewById(R.id.nameText);
         usernameText = findViewById(R.id.usernameText);
         bioText = findViewById(R.id.bioText);

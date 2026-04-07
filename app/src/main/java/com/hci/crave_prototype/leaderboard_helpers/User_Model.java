@@ -34,17 +34,21 @@ public class User_Model {
         dist=newDist;
         craveDatabase.child("users").child(getUserName()).child("dist").setValue(newDist);
         //Update the Max Heap (PriorityQueue) due to change
-        updateLeaderboard(username);
+        updateLeaderboard();
     }
     public void updateVisits(int newVisits) {
         visits=newVisits;
         craveDatabase.child("users").child(getUserName()).child("visits").setValue(newVisits);
         //Update the Max Heap (PriorityQueue) due to change
-        updateLeaderboard(username);
+        updateLeaderboard();
     }
-    public void updateLeaderboard(String username) {
+    public void updateLeaderboard() {
         //Updates the Heap and re-orders it
-        Leaderboard_Model.Leaderboard_Heap.updateHeap(username);
+        Leaderboard_Model.Leaderboard_Heap.updateMap(this);
+    }
+
+    public String toString() {
+        return String.format("[Dist: %d, Visits: %d, Name: %s, Username: %s]",getDist(),getVisits(),getName(),getUserName());
     }
 
 }

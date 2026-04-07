@@ -1,18 +1,27 @@
 package com.hci.crave_prototype.leaderboard_helpers;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class Leaderboard_Model  {
     public static final Leaderboard_Heap LBH = new Leaderboard_Heap();
     public static class Leaderboard_Heap implements Comparator<User_Model> {
-        private static DatabaseReference craveData = FirebaseDatabase.getInstance().getReference();
+        private static final DatabaseReference craveData = FirebaseDatabase.getInstance().getReference();
         private static PriorityQueue<User_Model> leaderboard = new PriorityQueue<>(new Leaderboard_Heap());
-        private static ArrayList<User_Model> leaderboardSorted = new ArrayList<>(100);
 
         /**
          * To be called onCreate of MainActivity. Populates Database
@@ -24,7 +33,7 @@ public class Leaderboard_Model  {
             temp.add(new User_Model(22, 10, "Sheey K", "sheey123"));
             temp.add(new User_Model(80, 12, "Eliz P", "eliz"));
             temp.add(new User_Model(90, 1, "Couche P", "couch"));
-            temp.add(new User_Model(50, 5, "Kyle K", "kyle"));
+            temp.add(new User_Model(50, 5, "Kyle K", "kyle")); // Our User
             temp.add(new User_Model(34, 1, "Zoe G", "zozo"));
             temp.add(new User_Model(45, 12, "Eric Z", "erpr"));
             temp.add(new User_Model(32, 3, "Lola G", "lols"));
@@ -34,15 +43,39 @@ public class Leaderboard_Model  {
                 craveData.child("users").child(user.getUserName()).setValue(user);
             }
         }
-        private void populateQueue() {
+        public static void populateQueue() {
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference crave = database.getReference("users");
+            try {
+                crave.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User_Model user = snapshot.getValue(User_Model.class);
+                        Log.i(TAG, user.toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
 
         }
-        private void sortQueue() {
 
-        }
-
-        public static void updateHeap(String username) {
-
+        public static void updateMap(User_Model changedUser) {
+            PriorityQueue<User_Model> temp = new PriorityQueue<>();
+            while (!leaderboard.isEmpty()) {
+                User_Model user = leaderboard.poll();
+                String un = user.getUserName();
+                if (un.equalsIgnoreCase(changedUser.getUserName())) {
+                    user = changedUser;
+                }
+                temp.add(user);
+            }
+            leaderboard = temp;
         }
 
         private int hashValues(int dist, int visits) {
