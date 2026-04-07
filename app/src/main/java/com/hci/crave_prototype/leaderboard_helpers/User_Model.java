@@ -4,9 +4,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class User_Model {
-    private int dist, visits;
+    private int dist;
+    private int visits;
+    private String name;
+    private String username;
     private static DatabaseReference craveDatabase = FirebaseDatabase.getInstance().getReference();
-    private String name, username;
 
     //Should not be called on, needed for Firebase
     public User_Model() {
@@ -27,18 +29,18 @@ public class User_Model {
     public int getDist() {return dist;}
     public int getVisits() {return visits;}
     public String getName() {return name;}
-    public String getUserName() {return username;}
+    public String getUsername() {return username;}
 
 
     public void updateDist(int newDist) {
         dist=newDist;
-        craveDatabase.child("users").child(getUserName()).child("dist").setValue(newDist);
+        craveDatabase.child("users").child(getUsername()).child("dist").setValue(newDist);
         //Update the Max Heap (PriorityQueue) due to change
         updateLeaderboard();
     }
     public void updateVisits(int newVisits) {
         visits=newVisits;
-        craveDatabase.child("users").child(getUserName()).child("visits").setValue(newVisits);
+        craveDatabase.child("users").child(getUsername()).child("visits").setValue(newVisits);
         //Update the Max Heap (PriorityQueue) due to change
         updateLeaderboard();
     }
@@ -48,7 +50,7 @@ public class User_Model {
     }
 
     public String toString() {
-        return String.format("[Dist: %d, Visits: %d, Name: %s, Username: %s]",getDist(),getVisits(),getName(),getUserName());
+        return String.format("[Dist: %d, Visits: %d, Name: %s, Username: %s]",getDist(),getVisits(),getName(),getUsername());
     }
 
 }

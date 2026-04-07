@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class Leaderboard_Model  {
@@ -22,6 +23,7 @@ public class Leaderboard_Model  {
     public static class Leaderboard_Heap implements Comparator<User_Model> {
         private static final DatabaseReference craveData = FirebaseDatabase.getInstance().getReference();
         private static PriorityQueue<User_Model> leaderboard = new PriorityQueue<>(new Leaderboard_Heap());
+        private static List<User_Model> userList = new ArrayList<>(10);
 
         /**
          * To be called onCreate of MainActivity. Populates Database
@@ -40,18 +42,33 @@ public class Leaderboard_Model  {
             temp.add(new User_Model(23, 4, "Zane H", "llzrip"));
 
             for (User_Model user : temp) {
-                craveData.child("users").child(user.getUserName()).setValue(user);
+                craveData.child("users").child(user.getUsername()).setValue(user);
             }
         }
         public static void populateQueue() {
+            Log.i(TAG, "populateQueue() Called");
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference crave = database.getReference("users");
             try {
                 crave.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User_Model user = snapshot.getValue(User_Model.class);
-                        Log.i(TAG, user.toString());
+                        for (DataSnapshot sn : snapshot.getChildren()) {
+                            User_Model user = sn.getValue(User_Model.class);
+
+                            if (user != null) {
+                                userList.add(user);
+                                Log.i(TAG, user.toString());
+                            }
+                        }
+
+                        if (!userList.isEmpty()) {
+                            Log.d(TAG, "~updating queue~");
+                            for (User_Model user : userList) {
+                                leaderboard.offer(user);
+                            }
+                            Log.d(TAG, "~queue updated~");
+                        }
                     }
 
                     @Override
@@ -62,15 +79,16 @@ public class Leaderboard_Model  {
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
             }
-
         }
 
         public static void updateMap(User_Model changedUser) {
+            Log.i(TAG, "updateMap() Called");
             PriorityQueue<User_Model> temp = new PriorityQueue<>();
             while (!leaderboard.isEmpty()) {
                 User_Model user = leaderboard.poll();
-                String un = user.getUserName();
-                if (un.equalsIgnoreCase(changedUser.getUserName())) {
+                Log.d(TAG, user.toString());
+                String un = user.getUsername();
+                if (un.equalsIgnoreCase(changedUser.getUsername())) {
                     user = changedUser;
                 }
                 temp.add(user);
