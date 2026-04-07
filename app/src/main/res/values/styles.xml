@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="Widget.Theme.CRAVE_Prototype.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+        <item name="exampleColor">@color/light_blue_400</item>
+    </style>
+
+    <!--https://m2.material.io/develop/android/theming/shape-->
+    <style name="ShapeAppearanceOverlay.Crave.CircleImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
