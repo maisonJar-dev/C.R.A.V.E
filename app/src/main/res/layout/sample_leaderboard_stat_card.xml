@@ -11,6 +11,8 @@
     android:focusable="false"
     android:checkable="false"
     app:cardCornerRadius="12dp"
+    app:strokeColor="@color/deep_lagoon"
+    app:cardBackgroundColor="@color/warm_white"
     app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +35,7 @@
             app:srcCompat="@drawable/avatar1" />
 
         <TextView
+            style="@style/NameLabel"
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -45,9 +48,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageHolder"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.153" />
+            app:layout_constraintVertical_bias="0.150" />
 
         <TextView
+            style="@style/StatText"
             android:id="@+id/distTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
+            style="@style/TextLabel"
             android:id="@+id/distLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,9 +84,10 @@
             app:layout_constraintStart_toEndOf="@+id/distLabel"
             app:layout_constraintTop_toBottomOf="@+id/name"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Crave.CircleImage"
-            app:srcCompat="@color/black" />
+            app:srcCompat="@color/deep_lagoon" />
 
         <TextView
+            style="@style/StatText"
             android:id="@+id/visitsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
+            style="@style/TextLabel"
             android:id="@+id/visitsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
