@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CRAVE_Prototype</string>
+    <string name="google_maps_key">AIzaSyAQ8iMf6bBBLvoNx7JrbcyqSsy-p9QigME</string>
 </resources>
