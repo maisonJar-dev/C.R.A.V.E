@@ -2,7 +2,9 @@ package com.hci.crave_prototype;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +25,24 @@ public class LeaderboardActivity extends AppCompatActivity {
             return insets;
         });
 
-        View card1 = getLayoutInflater().inflate(R.layout.sample_leaderboard_stat_card, null);
-        LinearLayout tt = findViewById(R.id.top3Container);
-        tt.addView(card1);
+        LinearLayout top3 = findViewById(R.id.top3List);
+        addRow(top3, R.layout.leaderboad_box_first, R.layout.sample_leaderboard_stat_card);
+        addRow(top3, R.layout.leaderboad_box_second, R.layout.sample_leaderboard_stat_card);
+        addRow(top3, R.layout.leaderboad_box_third, R.layout.sample_leaderboard_stat_card);
+
+    }
+
+    private void addRow(LinearLayout list, int placementLayout, int cardLayout) {
+        View row = getLayoutInflater().inflate(R.layout.leaderboard_row,list,false);
+
+        FrameLayout placementSlot = row.findViewById(R.id.placementSlot);
+        FrameLayout cardSlot = row.findViewById(R.id.cardSlot);
+
+        View placement = getLayoutInflater().inflate(placementLayout, placementSlot, false);
+        View card = getLayoutInflater().inflate(cardLayout, cardSlot, false);
+
+        placementSlot.addView(placement);
+        cardSlot.addView(card);
+        list.addView(row);
     }
 }

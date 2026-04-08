@@ -10,8 +10,8 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardback"
-        android:layout_width="350dp"
+        android:id="@+id/leaderLabel"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="16dp"
@@ -32,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:paddingTop="10dp"
+            android:paddingEnd="16dp"
             android:paddingBottom="10dp">
 
 
@@ -48,7 +48,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -56,16 +57,18 @@
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
-        android:id="@+id/top3Container"
-        android:layout_width="400dp"
+        android:id="@+id/top3List"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:divider="@drawable/leaderboard_divider"
         android:orientation="vertical"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:showDividers="middle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardback">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderLabel">
 
     </LinearLayout>
 

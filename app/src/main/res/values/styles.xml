@@ -15,7 +15,7 @@
     <!--================================-->
     <!--https://developer.android.com/guide/topics/resources/style-resource -->
     <style name="NameLabel" parent="@style/Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/deep_lagoon</item>\
+        <item name="android:textColor">@color/blaze_orange</item>\
         <item name="android:textSize">20dp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -36,5 +36,22 @@
         <item name="android:textSize">40dp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Placement Text -->
+    <style name="PlacementText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/warm_white</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!--===============-->
+    <!-- General Placement Text -->
+    <style name="GenPlacementText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!--===============-->
+
+
 
 </resources>
