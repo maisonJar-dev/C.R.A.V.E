@@ -12,9 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
-import com.hci.crave_prototype.leaderboard_helpers.Leaderboard_Model;
-
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileFragment extends AppCompatActivity {
 
     private TextView nameText;
     private TextView usernameText;
@@ -50,8 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
-        Leaderboard_Model.Leaderboard_Heap.populateDatabase();
-        Leaderboard_Model.Leaderboard_Heap.populateQueue();
+
         nameText = findViewById(R.id.nameText);
         usernameText = findViewById(R.id.usernameText);
         bioText = findViewById(R.id.bioText);
@@ -83,12 +80,12 @@ public class ProfileActivity extends AppCompatActivity {
         loadProfileData();
 
         editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            Intent intent = new Intent(ProfileFragment.this, EditProfileActivity.class);
             startActivity(intent);
         });
 
         settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(ProfileFragment.this, SettingsActivity.class);
             startActivity(intent);
         });
 
