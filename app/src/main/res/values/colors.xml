@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="electric_teal">#36BDBD</color>
+    <color name="blaze_orange">#D9622B</color>
+    <color name="deep_lagoon">#163E3E</color>
+    <color name="warm_white">#F5F2EA</color>
+    <color name="sunlit_gold">#E8A825</color>
 </resources>
