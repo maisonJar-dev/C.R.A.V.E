@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileFragment extends AppCompatActivity {
 
     private TextView nameText;
     private TextView usernameText;
@@ -80,12 +80,12 @@ public class ProfileActivity extends AppCompatActivity {
         loadProfileData();
 
         editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            Intent intent = new Intent(ProfileFragment.this, EditProfileActivity.class);
             startActivity(intent);
         });
 
         settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(ProfileFragment.this, SettingsActivity.class);
             startActivity(intent);
         });
 
