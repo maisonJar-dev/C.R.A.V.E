@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <style name="Theme.CRAVE_Prototype" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#36BDBD</item>
+        <item name="colorPrimaryVariant">#163E3E</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#D9622B</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:windowBackground">#F5F2EA</item>
+    </style>
 </resources>
