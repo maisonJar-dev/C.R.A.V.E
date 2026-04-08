@@ -40,36 +40,38 @@ public class leaderboardStatCard extends LinearLayout {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
-        // Load attributes
-        final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.leaderboardStatCard, defStyle, 0);
+        //TODO
 
-        mExampleString = a.getString(
-                R.styleable.leaderboardStatCard_exampleString);
-        mExampleColor = a.getColor(
-                R.styleable.leaderboardStatCard_exampleColor,
-                mExampleColor);
-        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
-        // values that should fall on pixel boundaries.
-        mExampleDimension = a.getDimension(
-                R.styleable.leaderboardStatCard_exampleDimension,
-                mExampleDimension);
+//        // Load attributes
+//        final TypedArray a = getContext().obtainStyledAttributes(
+//                attrs, R.styleable.leaderboardStatCard, defStyle, 0);
+//
+//        mExampleString = a.getString(
+//                R.styleable.leaderboardStatCard_exampleString);
+//        mExampleColor = a.getColor(
+//                R.styleable.leaderboardStatCard_exampleColor,
+//                mExampleColor);
+//        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
+//        // values that should fall on pixel boundaries.
+//        mExampleDimension = a.getDimension(
+//                R.styleable.leaderboardStatCard_exampleDimension,
+//                mExampleDimension);
+//
+//        if (a.hasValue(R.styleable.leaderboardStatCard_exampleDrawable)) {
+//            mExampleDrawable = a.getDrawable(
+//                    R.styleable.leaderboardStatCard_exampleDrawable);
+//            mExampleDrawable.setCallback(this);
+//        }
 
-        if (a.hasValue(R.styleable.leaderboardStatCard_exampleDrawable)) {
-            mExampleDrawable = a.getDrawable(
-                    R.styleable.leaderboardStatCard_exampleDrawable);
-            mExampleDrawable.setCallback(this);
-        }
-
-        a.recycle();
-
-        // Set up a default TextPaint object
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
-
-        // Update TextPaint and text measurements from attributes
-        invalidateTextPaintAndMeasurements();
+//        a.recycle();
+//
+//        // Set up a default TextPaint object
+//        mTextPaint = new TextPaint();
+//        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+//        mTextPaint.setTextAlign(Paint.Align.LEFT);
+//
+//        // Update TextPaint and text measurements from attributes
+//        invalidateTextPaintAndMeasurements();
     }
 
     private void invalidateTextPaintAndMeasurements() {
