@@ -49,10 +49,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         tvLocationMeta    = view.findViewById(R.id.tvLocationMeta);
         tvLocationCategory = view.findViewById(R.id.tvLocationCategory);
 
+
+
         Button btnStartRoute = view.findViewById(R.id.btnStartRoute);
         Button btnLogVisit   = view.findViewById(R.id.btnLogVisit);
-        Button btnClose      = view.findViewById(R.id.btnClose);
+        android.widget.ImageView btnClose = view.findViewById(R.id.btnClose);
         Button btnCall       = view.findViewById(R.id.btnCall);
+
 
         SupportMapFragment mapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.map);
