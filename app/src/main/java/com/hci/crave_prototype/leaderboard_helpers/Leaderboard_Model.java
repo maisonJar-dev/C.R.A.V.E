@@ -39,7 +39,7 @@ public class Leaderboard_Model {
             temp.add(new User_Model(22, 10, "Sheey K", "sheey123", "avatar4"));
             temp.add(new User_Model(80, 12, "Eliz P", "eliz", "avatar5"));
             temp.add(new User_Model(90, 1, "Couche P", "couch", "avatar10"));
-            temp.add(new User_Model(100, 10, "Kyle K", "kyle", "avatar1")); // Our User
+            temp.add(new User_Model(120, 8, "Kyle K", "kyle", "avatar1")); // Our User
             temp.add(new User_Model(34, 1, "Greg G", "grog", "avatar6"));
             temp.add(new User_Model(45, 12, "Eric Z", "erpr", "avatar7"));
             temp.add(new User_Model(32, 3, "Jacke L", "lols", "avatar8"));
