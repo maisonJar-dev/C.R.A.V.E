@@ -11,6 +11,12 @@ if (localPropsFile.exists()) {
     localProps.load(localPropsFile.inputStream())
 }
 
+val localProps = Properties()
+val localPropsFile = rootProject.file("local.properties")
+if (localPropsFile.exists()) {
+    localProps.load(localPropsFile.inputStream())
+}
+
 android {
     namespace = "com.hci.crave_prototype"
     compileSdk {
