@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hci.crave_prototype.leaderboard_helpers.Leaderboard_Model;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Leaderboard_Model.Leaderboard_Heap.populateDatabase();
         bottomNav = findViewById(R.id.bottom_nav);
 
         if (savedInstanceState == null) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.nav_discover) {
                 loadFragment(new HomeFragment());
             } else if (id == R.id.nav_leaderboard) {
-                loadFragment(new LeaderboardFragment());
+                loadFragment(new LoadingFragment());
             } else if (id == R.id.nav_profile) {
                 loadFragment(new ProfileFragment());
             }

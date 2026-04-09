@@ -10,6 +10,7 @@
     android:checkable="false"
     app:cardCornerRadius="12dp"
     app:strokeColor="@color/deep_lagoon"
+    app:strokeWidth="2dp"
     app:cardBackgroundColor="@color/warm_white"
     app:cardElevation="2dp">
 

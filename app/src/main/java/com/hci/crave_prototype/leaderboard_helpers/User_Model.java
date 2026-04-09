@@ -8,6 +8,7 @@ public class User_Model {
     private int visits;
     private String name;
     private String username;
+    private String imageName;
     private static DatabaseReference craveDatabase = FirebaseDatabase.getInstance().getReference();
 
     //Should not be called on, needed for Firebase
@@ -15,21 +16,28 @@ public class User_Model {
 
     }
 
-    public User_Model(int dist, int visits, String name, String username) {
-        createUser(dist, visits, name, username);
+    public User_Model(int dist, int visits, String name, String username, String imageName) {
+        createUser(dist, visits, name, username, imageName);
     }
 
-    public void createUser(int dist, int visits, String name, String username) {
+    public void createUser(int dist, int visits, String name, String username, String imageName) {
         this.dist = dist;
         this.visits = visits;
         this.name = name;
         this.username = username;
+        this.imageName = imageName;
     }
 
     public int getDist() {return dist;}
     public int getVisits() {return visits;}
     public String getName() {return name;}
     public String getUsername() {return username;}
+    public String getImageName() {return imageName;}
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+        craveDatabase.child("users").child(getUsername()).child("imageName").setValue(imageName);
+    }
 
 
     public void updateDist(int newDist) {
