@@ -1,8 +1,10 @@
 package com.hci.crave_prototype;
+import static android.content.ContentValues.TAG;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -63,12 +65,20 @@ public class LeaderboardFragment extends Fragment {
             placementText.setText("#" + rank);
         }
 
-        if (placement.getId() == R.id.p1Box) {
-            openFistPrizeInfo(placement, overlay);
-        }
-
         View card = getLayoutInflater().inflate(cardLayout, cardSlot, false);
         bindCard(card, user, rank);
+        card.setOnClickListener(click -> {
+            TextView target = card.findViewById(R.id.name);
+            if (target == null) return;
+            String name = target.getText().toString().trim();
+            if (name.equalsIgnoreCase("Kyle K")) {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).switchToProfileTab();
+                }
+                loadFragment(new ProfileFragment());
+            }
+
+        });
 
         placementSlot.addView(placement);
         cardSlot.addView(card);
@@ -99,31 +109,14 @@ public class LeaderboardFragment extends Fragment {
         if (visitsTxt != null) visitsTxt.setText(String.valueOf(user.getVisits()));
     }
 
-    private void openFistPrizeInfo(View placement, View overlay) {
-        View p1 = placement.findViewById(R.id.p1Box);
-        if (p1 == null || overlay == null) return;
-
-        p1.setOnTouchListener(new View.OnTouchListener(){
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    overlay.setVisibility(VISIBLE);
-                    overlay.bringToFront();
-                    overlay.setZ(200);
-                    return true;
-                } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    overlay.setVisibility(GONE);
-                    overlay.setZ(0);
-                    return true;
-                }
-                return false;
-            }
-        });
-
-    }
-
     private PriorityQueue<User_Model> getQueue() {
         return Leaderboard_Model.Leaderboard_Heap.getLeaderboard();
+    }
+
+    private void loadFragment(Fragment fragment) {
+        if (!isAdded()) return;
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
     }
 }
