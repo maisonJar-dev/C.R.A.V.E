@@ -57,63 +57,74 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/top3List"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:divider="@drawable/leaderboard_divider"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderLabel">
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/leftDivider"
-        android:layout_width="80dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/sunlit_gold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top3List" />
-
-    <View
-        android:id="@+id/rightDivider"
-        android:layout_width="290dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/deep_lagoon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top3List" />
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leaderboardContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fillViewport="true"
-        android:scrollbars="none"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rightDivider"
+        app:layout_constraintTop_toBottomOf="@+id/leaderLabel"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/leaderboardNormal"
-            android:layout_width="match_parent"
+            android:id="@+id/top3List"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:divider="@drawable/leaderboard_divider"
+            android:orientation="vertical"
             android:showDividers="middle"
-            android:orientation="vertical" />
-    </ScrollView>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+        </LinearLayout>
+
+        <View
+            android:id="@+id/leftDivider"
+            android:layout_width="80dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/sunlit_gold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top3List" />
+
+        <View
+            android:id="@+id/rightDivider"
+            android:layout_width="290dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/deep_lagoon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top3List" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rightDivider"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:id="@+id/leaderboardNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/leaderboard_divider"
+                android:showDividers="middle"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
