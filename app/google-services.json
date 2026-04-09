@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "152013403667",
+    "project_id": "crave-e9027",
+    "storage_bucket": "crave-e9027.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152013403667:android:d61400879d5763410631e6",
+        "android_client_info": {
+          "package_name": "com.hci.crave_prototype"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGvn66di2oA4yV9hyU8ALknAAnxVLVcvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
