@@ -1,6 +1,10 @@
 package com.hci.crave_prototype;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -22,45 +26,32 @@ public class LeaderboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.leaderboard_view, container, false);
 
-        View leaderLabel = view.findViewById(R.id.leaderLabel);
-        ViewCompat.setOnApplyWindowInsetsListener(leaderLabel, (v, insets) -> {
-            int topInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-            ViewGroup.LayoutParams lp = v.getLayoutParams();
-            if (lp instanceof ViewGroup.MarginLayoutParams) {
-                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
-                // Preserve XML marginTop and add the system bar inset.
-                int baseTop = mlp.topMargin;
-                mlp.topMargin = baseTop + topInset;
-                v.setLayoutParams(mlp);
-            }
-            return insets;
-        });
-
         PriorityQueue<User_Model> lbRanking = getQueue();
         if (lbRanking == null || lbRanking.isEmpty()) {
             return view;
         }
 
+        View overlay = view.findViewById(R.id.p1Info);
         LinearLayout top3 = view.findViewById(R.id.top3List);
         User_Model p1 = lbRanking.poll();
         User_Model p2 = lbRanking.poll();
         User_Model p3 = lbRanking.poll();
-        addRow(top3, R.layout.leaderboad_box_first, R.layout.sample_leaderboard_stat_card, p1, 1);
-        addRow(top3, R.layout.leaderboad_box_second, R.layout.sample_leaderboard_stat_card, p2, 2);
-        addRow(top3, R.layout.leaderboad_box_third, R.layout.sample_leaderboard_stat_card, p3, 3);
+        addRow(top3, R.layout.leaderboad_box_first, R.layout.sample_leaderboard_stat_card, p1, 1, overlay);
+        addRow(top3, R.layout.leaderboad_box_second, R.layout.sample_leaderboard_stat_card, p2, 2, overlay);
+        addRow(top3, R.layout.leaderboad_box_third, R.layout.sample_leaderboard_stat_card, p3, 3, overlay);
 
         int rank = 4;
         LinearLayout normal = view.findViewById(R.id.leaderboardNormal);
         while (!lbRanking.isEmpty()) {
             User_Model user = lbRanking.poll();
-            addRow(normal, R.layout.leaderboad_box_general, R.layout.sample_leaderboard_stat_card, user, rank);
+            addRow(normal, R.layout.leaderboad_box_general, R.layout.sample_leaderboard_stat_card, user, rank, overlay);
             rank++;
         }
 
         return view;
     }
 
-    private void addRow(LinearLayout list, int placementLayout, int cardLayout, User_Model user, int rank) {
+    private void addRow(LinearLayout list, int placementLayout, int cardLayout, User_Model user, int rank, View overlay) {
         View row = getLayoutInflater().inflate(R.layout.leaderboard_row, list, false);
 
         FrameLayout placementSlot = row.findViewById(R.id.placementSlot);
@@ -70,6 +61,10 @@ public class LeaderboardFragment extends Fragment {
         TextView placementText = placement.findViewById(R.id.placementText);
         if (placementText != null) {
             placementText.setText("#" + rank);
+        }
+
+        if (placement.getId() == R.id.p1Box) {
+            openFistPrizeInfo(placement, overlay);
         }
 
         View card = getLayoutInflater().inflate(cardLayout, cardSlot, false);
@@ -102,6 +97,30 @@ public class LeaderboardFragment extends Fragment {
         if (name != null) name.setText(user.getName());
         if (distTxt != null) distTxt.setText(String.valueOf(user.getDist()));
         if (visitsTxt != null) visitsTxt.setText(String.valueOf(user.getVisits()));
+    }
+
+    private void openFistPrizeInfo(View placement, View overlay) {
+        View p1 = placement.findViewById(R.id.p1Box);
+        if (p1 == null || overlay == null) return;
+
+        p1.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    overlay.setVisibility(VISIBLE);
+                    overlay.bringToFront();
+                    overlay.setZ(200);
+                    return true;
+                } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    overlay.setVisibility(GONE);
+                    overlay.setZ(0);
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private PriorityQueue<User_Model> getQueue() {

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LeaderboardFragment"
+    android:paddingTop="30dp"
     android:background="@color/warm_white">
 
 
@@ -16,7 +17,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="8dp"
-        android:layout_marginTop="120dp"
         android:checkable="false"
         android:clickable="false"
         android:focusable="false"
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:paddingStart="16dp"
             android:paddingTop="10dp"
-            android:paddingEnd="16dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="10dp">
 
 
@@ -61,7 +61,6 @@
         android:id="@+id/leaderboardContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderLabel"
@@ -126,5 +125,29 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/p1Info"
+        layout="@layout/prize_first"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        android:id="@+id/p2Info"
+        layout="@layout/prize_second"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        android:id="@+id/p3Info"
+        layout="@layout/prize_third"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
