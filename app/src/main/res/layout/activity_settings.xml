@@ -35,30 +35,38 @@
             android:id="@+id/aboutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="About the App" />
+            android:layout_marginTop="12dp"
+            android:text="ABOUT THE APP"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/deep_lagoon" />
 
         <Button
             android:id="@+id/helpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Help" />
+            android:text="HELP"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/deep_lagoon" />
 
         <Button
             android:id="@+id/contactButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Contact Us" />
+            android:text="CONTACT US"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/deep_lagoon" />
+
 
         <Button
             android:id="@+id/saveSettingsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Save Settings"
-            android:backgroundTint="#4CAF50" />
+            android:layout_marginTop="20dp"
+            android:text="SAVE SETTINGS"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/electric_teal" />
 
     </LinearLayout>
 </ScrollView>

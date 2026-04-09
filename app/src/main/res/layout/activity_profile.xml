@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/warm_white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/warm_white">
 
         <!-- Banner Image -->
         <ImageView
             android:id="@+id/bannerImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:scaleType="centerCrop"
             android:src="@drawable/kelowna_banner"
             android:contentDescription="Kelowna banner image" />
@@ -20,10 +22,10 @@
         <!-- Profile Avatar -->
         <ImageView
             android:id="@+id/profileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-40dp"
+            android:layout_marginTop="-35dp"
             android:src="@drawable/avatar1"
             android:contentDescription="Profile avatar" />
 
@@ -33,8 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="Kyle K."
+            android:textColor="@color/deep_lagoon"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -44,7 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="username" />
+            android:text="username"
+            android:textColor="@color/deep_lagoon"
+            android:textSize="13sp" />
 
         <!-- Bio -->
         <TextView
@@ -52,14 +57,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:text="Exploring Kelowna on wheels" />
+            android:layout_marginTop="4dp"
+            android:text="Exploring Kelowna on wheels"
+            android:textColor="@color/deep_lagoon"
+            android:textSize="13sp" />
 
         <!-- Stats -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -67,37 +74,58 @@
                 android:id="@+id/distanceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="120 km" />
+                android:layout_marginEnd="20dp"
+                android:text="120 km"
+                android:textColor="@color/deep_lagoon"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/visitsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8 visits" />
+                android:text="8 visits"
+                android:textColor="@color/deep_lagoon"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <!-- Action Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingLeft="14dp"
+                android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
                 android:text="Edit Profile"
-                android:backgroundTint="#4CAF50" />
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:backgroundTint="@color/electric_teal" />
 
             <Button
                 android:id="@+id/settingsButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Settings" />
+                android:layout_height="48dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:layout_marginStart="10dp"
+                android:paddingLeft="14dp"
+                android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
+                android:text="Settings"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:backgroundTint="@color/blaze_orange" />
         </LinearLayout>
 
         <!-- Achievements Main Title -->
@@ -105,9 +133,10 @@
             android:id="@+id/achievementTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="14dp"
             android:layout_marginStart="16dp"
             android:text="Achievements"
+            android:textColor="@color/deep_lagoon"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -116,8 +145,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:text="Tap a badge to learn more"
+            android:textColor="@color/deep_lagoon"
             android:textSize="12sp" />
 
         <!-- Distance Category -->
@@ -125,18 +155,19 @@
             android:id="@+id/distanceCategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:text="Distance Badges"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#2E7D32" />
+            android:textColor="@color/electric_teal" />
 
         <HorizontalScrollView
             android:id="@+id/distanceScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="4dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -145,28 +176,86 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
-                <Button
+                <LinearLayout
                     android:id="@+id/badgeFirstRide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Ride"
-                    android:backgroundTint="#66BB6A" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_teal"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_bike"
+                        android:contentDescription="First Ride badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="First Ride"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/badge10km"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="10 KM"
-                    android:backgroundTint="#66BB6A" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_teal"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_trophy"
+                        android:contentDescription="10 KM badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="10 KM"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/badge50km"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="50 KM"
-                    android:backgroundTint="#66BB6A" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_teal"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_trophy"
+                        android:contentDescription="50 KM badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="50 KM"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -175,18 +264,19 @@
             android:id="@+id/visitCategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:text="Visit Badges"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#EF6C00" />
+            android:textColor="@color/blaze_orange" />
 
         <HorizontalScrollView
             android:id="@+id/visitScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="4dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -195,28 +285,86 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
-                <Button
+                <LinearLayout
                     android:id="@+id/badgeFirstVisit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Visit"
-                    android:backgroundTint="#FFB74D" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_orange"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_discover"
+                        android:contentDescription="First Visit badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="First Visit"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/badgeFoodie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Foodie"
-                    android:backgroundTint="#FFB74D" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_orange"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_trophy"
+                        android:contentDescription="Foodie badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Foodie"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/badgeLocalTourist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Local Tourist"
-                    android:backgroundTint="#FFB74D" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_orange"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_profile"
+                        android:contentDescription="Local Tourist badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Local Tourist"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -225,19 +373,20 @@
             android:id="@+id/consistencyCategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:text="Consistency Badges"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#5E35B1" />
+            android:textColor="@color/sunlit_gold" />
 
         <HorizontalScrollView
             android:id="@+id/consistencyScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -246,28 +395,59 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
-                <Button
+                <LinearLayout
                     android:id="@+id/badgeWeekendCyclist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weekend Cyclist"
-                    android:backgroundTint="#9575CD" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_gold"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_bike"
+                        android:contentDescription="Weekend Cyclist badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Weekend Cyclist"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/badgeConsistentRider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Consistent Rider"
-                    android:backgroundTint="#9575CD" />
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                <Button
-                    android:id="@+id/badgeEarlyBird"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Early Bird"
-                    android:backgroundTint="#9575CD" />
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/circle_badge_gold"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_trophy"
+                        android:contentDescription="Consistent Rider badge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Consistent Rider"
+                        android:textColor="@color/deep_lagoon"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
