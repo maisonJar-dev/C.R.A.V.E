@@ -1,0 +1,23 @@
+warning: in the working copy of '.idea/misc.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/src/main/res/values-night/styles.xml', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mindex f104487..d7916a5 100644[m
+[1m--- a/.idea/misc.xml[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -1,4 +1,3 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+ <project version="4">[m
+   <component name="ExternalStorageConfigurationManager" enabled="true" />[m
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">[m
+[1mdiff --git a/app/src/main/res/values-night/styles.xml b/app/src/main/res/values-night/styles.xml[m
+[1mindex d56976b..4cb790d 100644[m
+[1m--- a/app/src/main/res/values-night/styles.xml[m
+[1m+++ b/app/src/main/res/values-night/styles.xml[m
+[36m@@ -2,6 +2,5 @@[m
+ [m
+     <style name="Widget.Theme.CRAVE_Prototype.MyView" parent="">[m
+         <item name="android:background">@color/gray_600</item>[m
+[31m-        <item name="exampleColor">@color/light_blue_600</item>[m
+     </style>[m
+ </resources>[m
+\ No newline at end of file[m

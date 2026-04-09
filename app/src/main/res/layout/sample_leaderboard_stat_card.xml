@@ -1,0 +1,115 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardback"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/leader_card_standard"
+    android:layout_gravity="center_horizontal"
+    android:clickable="true"
+    android:focusable="false"
+    android:checkable="false"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="@color/deep_lagoon"
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="@color/warm_white"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageHolder"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Crave.CircleImage"
+            app:srcCompat="@drawable/avatar1" />
+
+        <TextView
+            style="@style/NameLabel"
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Kyke K"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageHolder"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.150" />
+
+        <TextView
+            style="@style/StatText"
+            android:id="@+id/distTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:text="100"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/imageHolder"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <TextView
+            style="@style/TextLabel"
+            android:id="@+id/distLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Km"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/distTxt"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toEndOf="@+id/distLabel"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Crave.CircleImage"
+            app:srcCompat="@color/deep_lagoon" />
+
+        <TextView
+            style="@style/StatText"
+            android:id="@+id/visitsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="5"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/dot"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <TextView
+            style="@style/TextLabel"
+            android:id="@+id/visitsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Visits"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/visitsTxt"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
