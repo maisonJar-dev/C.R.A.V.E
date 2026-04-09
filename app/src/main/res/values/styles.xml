@@ -51,7 +51,57 @@
         <item name="android:textStyle">bold</item>
     </style>
     <!--===============-->
-
+    <!--================================-->
+    <!--          PRIZE VIEWS           -->
+    <!--================================-->
+    <!-- First Place -->
+    <style name="FirstPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="FirstPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="FirstPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Second Place -->
+    <style name="SecondPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SecondPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SecondPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Third Place -->
+    <style name="ThirdPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/sunlit_gold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ThirdPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ThirdPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/sunlit_gold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 </resources>

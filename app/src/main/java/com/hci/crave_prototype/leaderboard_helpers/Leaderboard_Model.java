@@ -38,12 +38,12 @@ public class Leaderboard_Model {
             temp.add(new User_Model(25, 1, "James P", "james", "avatar3"));
             temp.add(new User_Model(22, 10, "Sheey K", "sheey123", "avatar4"));
             temp.add(new User_Model(80, 12, "Eliz P", "eliz", "avatar5"));
-            temp.add(new User_Model(90, 1, "Couche P", "couch", "avatar3"));
-            temp.add(new User_Model(50, 5, "Kyle K", "kyle", "avatar1")); // Our User
-            temp.add(new User_Model(34, 1, "Zoe G", "zozo", "avatar2"));
-            temp.add(new User_Model(45, 12, "Eric Z", "erpr", "avatar4"));
-            temp.add(new User_Model(32, 3, "Lola G", "lols", "avatar5"));
-            temp.add(new User_Model(23, 4, "Zane H", "llzrip", "avatar2"));
+            temp.add(new User_Model(90, 1, "Couche P", "couch", "avatar10"));
+            temp.add(new User_Model(100, 10, "Kyle K", "kyle", "avatar1")); // Our User
+            temp.add(new User_Model(34, 1, "Greg G", "grog", "avatar6"));
+            temp.add(new User_Model(45, 12, "Eric Z", "erpr", "avatar7"));
+            temp.add(new User_Model(32, 3, "Jacke L", "lols", "avatar8"));
+            temp.add(new User_Model(110, 4, "Zane H", "llzrip", "avatar9"));
 
             for (User_Model user : temp) {
                 craveData.child("users").child(user.getUsername()).setValue(user);

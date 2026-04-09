@@ -34,12 +34,6 @@ public class User_Model {
     public String getUsername() {return username;}
     public String getImageName() {return imageName;}
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-        craveDatabase.child("users").child(getUsername()).child("imageName").setValue(imageName);
-    }
-
-
     public void updateDist(int newDist) {
         dist=newDist;
         craveDatabase.child("users").child(getUsername()).child("dist").setValue(newDist);

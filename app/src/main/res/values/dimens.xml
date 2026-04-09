@@ -2,4 +2,6 @@
 <resources>
     <dimen name="leader_card_standard">80dp</dimen>
     <dimen name="leader_card_depth">270dp</dimen>
+    <dimen name="prize_width">320dp</dimen>
+    <dimen name="prize_depth">150dp</dimen>
 </resources>
