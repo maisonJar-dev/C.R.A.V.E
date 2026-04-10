@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private Location lastLocation;
     private List<LatLng> pathPoints = new ArrayList<>();
     private Polyline ridePolyline;
+    private Polyline searchPolyline;
 
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             if (!isRiding) {
                 btnStartRoute.setText("Start Route");
                 btnStartRoute.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#36BDBD")));
+                clearAllRoutes();
             }
         });
 
@@ -141,7 +143,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        btnLogVisit.setOnClickListener(v -> showVisitLoggedOverlay());
+        btnLogVisit.setOnClickListener(v -> {
+            if (isRiding) {
+                stopRide();
+                btnStartRoute.setText("Start Route");
+                btnStartRoute.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#36BDBD")));
+            }
+            showVisitLoggedOverlay();
+        });
 
         btnPauseResume.setOnClickListener(v -> {
             if (currentRide != null) {
@@ -173,14 +182,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             return;
         }
 
+        // KEEP search line when ride starts, don't remove it
+        // (Removing the searchPolyline.remove() call here)
+
         isRiding = true;
         currentRide = new Ride();
         lastLocation = null;
         pathPoints.clear();
         
         if (mMap != null) {
-            mMap.clear();
-            ridePolyline = mMap.addPolyline(new PolylineOptions().width(12).color(0xFF36BDBD));
+            // Just add the ride path on top of existing markers and search line
+            if (ridePolyline != null) ridePolyline.remove();
+            ridePolyline = mMap.addPolyline(new PolylineOptions().width(12).color(Color.parseColor("#36BDBD")));
         }
 
         timerCard.setVisibility(View.VISIBLE);
@@ -217,7 +230,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         timerCard.setVisibility(View.GONE);
         bottomSheet.setVisibility(View.GONE);
 
+        clearAllRoutes();
+
         Toast.makeText(requireContext(), "Ride saved!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void clearAllRoutes() {
+        if (ridePolyline != null) {
+            ridePolyline.remove();
+            ridePolyline = null;
+        }
+        if (searchPolyline != null) {
+            searchPolyline.remove();
+            searchPolyline = null;
+        }
+        pathPoints.clear();
     }
 
     private void startLocationUpdates() {
@@ -294,6 +321,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void showResultOnMap(String name) {
+        // Clear previous paths but keep markers logic clean
+        if (searchPolyline != null) searchPolyline.remove();
+        if (ridePolyline != null) ridePolyline.remove();
+
         mMap.clear();
         mMap.addMarker(new MarkerOptions()
                 .position(KELOWNA_CENTER).title("You")
@@ -302,9 +333,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 .position(destinationLatLng).title(name)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
         
-        mMap.addPolyline(new PolylineOptions()
+        searchPolyline = mMap.addPolyline(new PolylineOptions()
                 .add(KELOWNA_CENTER, destinationLatLng)
-                .width(10f).color(0xFF36BDBD));
+                .width(10f).color(Color.parseColor("#36BDBD")));
         
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destinationLatLng, 14f));
 
@@ -324,6 +355,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private void showVisitLoggedOverlay() {
         bottomSheet.setVisibility(View.GONE);
+        clearAllRoutes();
         new android.app.AlertDialog.Builder(requireContext())
                 .setTitle("⭐ Visit Logged!")
                 .setMessage("Great ride! Your stop at " + destinationName +
