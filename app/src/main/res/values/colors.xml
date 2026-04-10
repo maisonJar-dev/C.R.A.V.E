@@ -2,14 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_blue_400">#FF29B6F6</color>
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="gray_400">#FFBDBDBD</color>
-    <color name="gray_600">#FF757575</color>
 
-    <color name="warm_white">#F5F2EA</color>
+    <!-- Branding Palette -->
     <color name="electric_teal">#36BDBD</color>
-    <color name="deep_lagoon">#163E3E</color>
     <color name="blaze_orange">#D9622B</color>
+    <color name="deep_lagoon">#163E3E</color>
+    <color name="warm_white">#F5F2EA</color>
     <color name="sunlit_gold">#E8A825</color>
 </resources>
