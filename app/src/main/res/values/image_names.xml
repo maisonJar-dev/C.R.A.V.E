@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="images">
+        <item>avatar1</item>
+        <item>avatar2</item>
+        <item>avatar3</item>
+        <item>avatar4</item>
+        <item>avatar5</item>
+        <item>avatar6</item>
+        <item>avatar7</item>
+        <item>avatar8</item>
+        <item>avatar9</item>
+        <item>avatar10</item>
+    </string-array>
+</resources>

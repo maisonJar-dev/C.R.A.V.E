@@ -1,0 +1,107 @@
+<resources>
+
+    <style name="Widget.Theme.CRAVE_Prototype.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+    </style>
+
+    <!--https://m2.material.io/develop/android/theming/shape -->
+    <style name="ShapeAppearanceOverlay.Crave.CircleImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!--================================-->
+    <!--    LEADERBOARD STAT CARDS      -->
+    <!--================================-->
+    <!--https://developer.android.com/guide/topics/resources/style-resource -->
+    <style name="NameLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blaze_orange</item>\
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="StatText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blaze_orange</item>
+    </style>
+    <style name="TextLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!--================================-->
+
+    <!--================================-->
+    <!--    LEADERBOARD ACTIVITY        -->
+    <!--================================-->
+    <style name="HeaderLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/warm_white</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Placement Text -->
+    <style name="PlacementText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/warm_white</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!--===============-->
+    <!-- General Placement Text -->
+    <style name="GenPlacementText" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!--===============-->
+    <!--================================-->
+    <!--          PRIZE VIEWS           -->
+    <!--================================-->
+    <!-- First Place -->
+    <style name="FirstPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="FirstPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="FirstPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Second Place -->
+    <style name="SecondPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SecondPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/deep_lagoon</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SecondPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Third Place -->
+    <style name="ThirdPlacePrizeLabel" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/sunlit_gold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ThirdPlacePrizeBody" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ThirdPlacePrizeComp" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/sunlit_gold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+</resources>
