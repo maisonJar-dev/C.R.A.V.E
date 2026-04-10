@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/warm_white">
 
     <!-- Map fills entire screen -->
     <androidx.fragment.app.FragmentContainerView
@@ -11,42 +12,57 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <!-- Search bar overlay at top -->
-    <LinearLayout
+
+    <!-- Search bar overlay at top with higher elevation and translationZ -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="56dp"
         android:layout_margin="16dp"
-        android:background="@drawable/search_bar_bg"
-        android:padding="12dp"
-        android:elevation="8dp">
+        app:cardCornerRadius="28dp"
+        app:cardElevation="12dp"
+        android:translationZ="20dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_profile"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-        <EditText
-            android:id="@+id/etSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Search Here"
-            android:textSize="16sp"
-            android:background="@null"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:singleLine="true"/>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/deep_lagoon" />
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_profile"
-            android:layout_gravity="center_vertical"/>
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Search destinations..."
+                android:textSize="16sp"
+                android:background="@null"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/deep_lagoon" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnGo"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GO"
+                android:textColor="@color/blaze_orange"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Bottom sheet for location details -->
     <LinearLayout
@@ -54,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bottom_sheet_bg"
+        android:background="@color/warm_white"
         android:padding="20dp"
         android:visibility="gone"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -63,7 +79,8 @@
         <View
             android:layout_width="40dp"
             android:layout_height="4dp"
-            android:background="#CCCCCC"
+            android:background="@color/deep_lagoon"
+            android:alpha="0.2"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"/>
 
@@ -80,27 +97,15 @@
                 android:layout_weight="1"
                 android:textSize="22sp"
                 android:textStyle="bold"
+                android:textColor="@color/deep_lagoon"
                 android:text="Location Name"/>
-
-            <ImageView
-                android:id="@+id/btnBookmark"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@android:drawable/btn_star_big_off"
-                android:layout_marginEnd="12dp"/>
-
-            <ImageView
-                android:id="@+id/btnShare"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@android:drawable/ic_menu_share"
-                android:layout_marginEnd="12dp"/>
 
             <ImageView
                 android:id="@+id/btnClose"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="@color/deep_lagoon" />
 
         </LinearLayout>
 
@@ -108,18 +113,19 @@
             android:id="@+id/tvLocationMeta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="⭐ 3.9/5 (141)   🚲 30 min"
+            android:text="⭐ 4.0/5   🚲 15 min"
             android:textSize="14sp"
-            android:textColor="#555555"
+            android:textColor="@color/deep_lagoon"
+            android:alpha="0.7"
             android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/tvLocationCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Korean restaurant   $30–40"
+            android:text="📍 3.2 km away"
             android:textSize="14sp"
-            android:textColor="#555555"
+            android:textColor="@color/blaze_orange"
             android:layout_marginBottom="16dp"/>
 
         <LinearLayout
@@ -130,31 +136,25 @@
             <Button
                 android:id="@+id/btnStartRoute"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:text="▶ Start Route"
-                android:backgroundTint="#2ABFBF"
+                android:text="Start Route"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/electric_teal"
                 android:textColor="#FFFFFF"
+                app:cornerRadius="28dp"
                 android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/btnLogVisit"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:text="🏷 Log Visit"
-                android:backgroundTint="#E8871E"
+                android:text="Log Visit"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/blaze_orange"
                 android:textColor="#FFFFFF"
-                android:layout_marginEnd="8dp"/>
-
-            <Button
-                android:id="@+id/btnCall"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:text="📞 Call"
-                android:backgroundTint="#2ABFBF"
-                android:textColor="#FFFFFF"/>
+                app:cornerRadius="28dp" />
 
         </LinearLayout>
 
