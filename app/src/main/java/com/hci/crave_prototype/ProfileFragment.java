@@ -148,7 +148,7 @@ public class ProfileFragment extends Fragment {
             bindAchievements(bundleUser.getDist(), bundleUser.getVisits());
 
         } else {
-            // ---- Kyle's own profile: SharedPreferences, unchanged ----
+            // ---- Kyle's own profile: SharedPreferences, unchanged
             SharedPreferences prefs = requireContext()
                     .getSharedPreferences("ProfilePrefs", android.content.Context.MODE_PRIVATE);
 
