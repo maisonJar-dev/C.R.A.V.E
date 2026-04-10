@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_ride) {
-                loadFragment(new RideTrackingFragment());
+                loadFragment(new FeedPageFragment());
             } else if (id == R.id.nav_discover) {
                 loadFragment(new HomeFragment());
             } else if (id == R.id.nav_leaderboard) {
