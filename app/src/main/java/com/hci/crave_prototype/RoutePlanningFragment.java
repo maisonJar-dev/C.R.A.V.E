@@ -3,13 +3,14 @@ package com.hci.crave_prototype;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +29,23 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RoutePlanningFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private EditText etDestination;
     private Button btnSearch, btnSelectRoute;
-    private LinearLayout routeInfoPanel;
+    private View routeInfoPanel; // Changed to View to support CardView in XML
     private TextView tvDestinationName, tvRouteDistance;
 
     // Kelowna city center as default start point
     private final LatLng KELOWNA_CENTER = new LatLng(49.8880, -119.4960);
     private LatLng destinationLatLng;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,60 +89,75 @@ public class RoutePlanningFragment extends Fragment implements OnMapReadyCallbac
                 .position(KELOWNA_CENTER)
                 .title("Your Location")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        
+        // Ensure map settings don't block our UI
+        mMap.getUiSettings().setMapToolbarEnabled(false);
     }
 
     private void searchDestination() {
+        if (mMap == null) {
+            Toast.makeText(requireContext(), "Map not ready", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String query = etDestination.getText().toString().trim();
         if (query.isEmpty()) {
             Toast.makeText(requireContext(), "Enter a destination", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Append Kelowna to bias results locally
-        Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocationName(query + ", Kelowna, BC", 1);
-            if (addresses == null || addresses.isEmpty()) {
-                Toast.makeText(requireContext(), "Location not found", Toast.LENGTH_SHORT).show();
-                return;
+        // Use background thread for Geocoder to avoid blocking UI and potential crashes
+        executorService.execute(() -> {
+            Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
+            try {
+                // Bias search to Kelowna for the prototype
+                List<Address> addresses = geocoder.getFromLocationName(query + ", Kelowna, BC", 1);
+                
+                mainHandler.post(() -> {
+                    if (addresses == null || addresses.isEmpty()) {
+                        Toast.makeText(requireContext(), "Location not found", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Address address = addresses.get(0);
+                    destinationLatLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                    updateMapWithDestination(address, query);
+                });
+            } catch (IOException e) {
+                mainHandler.post(() -> 
+                    Toast.makeText(requireContext(), "Search failed. Check internet connection.", Toast.LENGTH_SHORT).show()
+                );
             }
+        });
+    }
 
-            Address address = addresses.get(0);
-            destinationLatLng = new LatLng(address.getLatitude(), address.getLongitude());
+    private void updateMapWithDestination(Address address, String query) {
+        mMap.clear();
 
-            // Clear old markers/routes
-            mMap.clear();
+        // Add markers
+        mMap.addMarker(new MarkerOptions()
+                .position(KELOWNA_CENTER)
+                .title("Your Location")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-            // Add start marker
-            mMap.addMarker(new MarkerOptions()
-                    .position(KELOWNA_CENTER)
-                    .title("Your Location")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        mMap.addMarker(new MarkerOptions()
+                .position(destinationLatLng)
+                .title(address.getFeatureName()));
 
-            // Add destination marker
-            mMap.addMarker(new MarkerOptions()
-                    .position(destinationLatLng)
-                    .title(address.getFeatureName()));
+        // Draw route line
+        mMap.addPolyline(new PolylineOptions()
+                .add(KELOWNA_CENTER, destinationLatLng)
+                .width(10f)
+                .color(0xFF36BDBD)); // Electric Teal
 
-            // Draw straight line route
-            mMap.addPolyline(new PolylineOptions()
-                    .add(KELOWNA_CENTER, destinationLatLng)
-                    .width(8f)
-                    .color(0xFF4CAF50));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destinationLatLng, 14f));
 
-            // Zoom to show both points
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destinationLatLng, 14f));
-
-            // Show route info panel
-            float distanceKm = distanceBetween(KELOWNA_CENTER, destinationLatLng);
-            tvDestinationName.setText(address.getFeatureName() != null
-                    ? address.getFeatureName() : query);
-            tvRouteDistance.setText(String.format("%.1f km away", distanceKm));
-            routeInfoPanel.setVisibility(View.VISIBLE);
-
-        } catch (IOException e) {
-            Toast.makeText(requireContext(), "Search failed, try again", Toast.LENGTH_SHORT).show();
-        }
+        // Update Info Panel
+        float distanceKm = distanceBetween(KELOWNA_CENTER, destinationLatLng);
+        tvDestinationName.setText(address.getFeatureName() != null ? address.getFeatureName() : query);
+        tvRouteDistance.setText(String.format("%.1f km away", distanceKm));
+        routeInfoPanel.setVisibility(View.VISIBLE);
     }
 
     private float distanceBetween(LatLng a, LatLng b) {
@@ -146,5 +167,11 @@ public class RoutePlanningFragment extends Fragment implements OnMapReadyCallbac
                 b.latitude, b.longitude,
                 result);
         return result[0] / 1000f;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        executorService.shutdown();
     }
 }
