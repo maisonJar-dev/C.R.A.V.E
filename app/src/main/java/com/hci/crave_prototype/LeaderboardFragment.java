@@ -1,12 +1,10 @@
 package com.hci.crave_prototype;
+
 import static android.content.ContentValues.TAG;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -15,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.hci.crave_prototype.leaderboard_helpers.Leaderboard_Model;
 import com.hci.crave_prototype.leaderboard_helpers.User_Model;
@@ -24,6 +20,7 @@ import com.hci.crave_prototype.leaderboard_helpers.User_Model;
 import java.util.PriorityQueue;
 
 public class LeaderboardFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.leaderboard_view, container, false);
@@ -67,17 +64,34 @@ public class LeaderboardFragment extends Fragment {
 
         View card = getLayoutInflater().inflate(cardLayout, cardSlot, false);
         bindCard(card, user, rank);
+
         card.setOnClickListener(click -> {
-            TextView target = card.findViewById(R.id.name);
-            if (target == null) return;
-            String name = target.getText().toString().trim();
-            if (name.equalsIgnoreCase("Kyle K")) {
+            if (user == null) return;
+
+            Leaderboard_Model.Leaderboard_Heap.fetchUser(user.getUsername(), fetchedUser -> {
+                if (fetchedUser == null || !isAdded()) return;
+
+                Leaderboard_Model.Leaderboard_Heap.updateMap(fetchedUser);
+                bindCard(card, fetchedUser, rank);
+
+                ProfileFragment profileFragment = new ProfileFragment();
+
+                // Kyle opens his own editable profile (no Bundle)
+                if (!fetchedUser.getUsername().equalsIgnoreCase("kyle")) {
+                    Bundle args = new Bundle();
+                    args.putString("username", fetchedUser.getUsername());
+                    args.putString("name", fetchedUser.getName());
+                    args.putInt("dist", fetchedUser.getDist());
+                    args.putInt("visits", fetchedUser.getVisits());
+                    args.putString("imageName", fetchedUser.getImageName());
+                    profileFragment.setArguments(args);
+                }
+
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).switchToProfileTab();
                 }
-                loadFragment(new ProfileFragment());
-            }
-
+                loadFragment(profileFragment);
+            });
         });
 
         placementSlot.addView(placement);
