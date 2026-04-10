@@ -61,4 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public void switchToProfileTab() {
         bottomNav.setSelectedItemId(R.id.nav_profile);
     }
+
+    public void switchToDiscoverTab() {
+        bottomNav.setSelectedItemId(R.id.nav_discover);
+    }
 }

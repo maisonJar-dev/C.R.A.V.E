@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/warm_white">
@@ -13,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <!-- Search bar overlay at top with higher elevation and translationZ -->
+    <!-- Search bar overlay at top -->
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_margin="16dp"
@@ -61,6 +63,56 @@
                 android:textColor="@color/blaze_orange"
                 android:textStyle="bold" />
 
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Floating Timer Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/timerCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="88dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
+        android:translationZ="20dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:id="@+id/statusIndicator"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@color/deep_lagoon"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnPauseResume"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_media_pause"
+                app:tint="@color/blaze_orange" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

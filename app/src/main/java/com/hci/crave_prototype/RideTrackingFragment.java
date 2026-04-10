@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.hci.crave_prototype.model.Ride;
@@ -40,6 +40,7 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
 
     private TextView tvStatus, tvTimer, tvDistance, tvSpeed;
     private Button btnStartStop;
+    private ImageButton btnPauseResume;
     private View statusIndicator;
     private GoogleMap mMap;
 
@@ -63,6 +64,7 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
         tvDistance = view.findViewById(R.id.tvDistance);
         tvSpeed    = view.findViewById(R.id.tvSpeed);
         btnStartStop = view.findViewById(R.id.btnStartStop);
+        btnPauseResume = view.findViewById(R.id.btnPauseResume);
         statusIndicator = view.findViewById(R.id.statusIndicator);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_ride);
@@ -75,6 +77,16 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
             else stopRide();
         });
 
+        btnPauseResume.setOnClickListener(v -> {
+            if (currentRide != null) {
+                if (currentRide.isPaused()) {
+                    resumeRide();
+                } else {
+                    pauseRide();
+                }
+            }
+        });
+
         return view;
     }
 
@@ -82,7 +94,6 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        // Default to Kelowna
         LatLng kelowna = new LatLng(49.8880, -119.4960);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kelowna, 15f));
     }
@@ -100,15 +111,43 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
         pathPoints.clear();
         if (mMap != null) {
             mMap.clear();
-            polyline = mMap.addPolyline(new PolylineOptions().width(12).color(0xFF36BDBD)); // Electric Teal
+            polyline = mMap.addPolyline(new PolylineOptions().width(12).color(0xFF36BDBD));
         }
 
         tvStatus.setText("Ride in Progress");
-        btnStartStop.setText("Stop Ride");
+        btnStartStop.setText("End Ride");
         btnStartStop.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(Color.parseColor("#D9622B"))); // Blaze Orange for Stop
-        statusIndicator.setBackgroundColor(Color.parseColor("#36BDBD")); // Electric Teal for active
+                android.content.res.ColorStateList.valueOf(Color.parseColor("#D9622B")));
+        
+        statusIndicator.setBackgroundColor(Color.parseColor("#36BDBD"));
+        btnPauseResume.setVisibility(View.VISIBLE);
+        btnPauseResume.setImageResource(android.R.drawable.ic_media_pause);
 
+        startLocationUpdates();
+        startTimer();
+    }
+
+    private void pauseRide() {
+        if (currentRide != null) {
+            currentRide.pause();
+            tvStatus.setText("Ride Paused");
+            statusIndicator.setBackgroundColor(Color.parseColor("#E8A825")); // Gold for pause
+            btnPauseResume.setImageResource(android.R.drawable.ic_media_play);
+            Toast.makeText(requireContext(), "Ride paused", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void resumeRide() {
+        if (currentRide != null) {
+            currentRide.resume();
+            tvStatus.setText("Ride in Progress");
+            statusIndicator.setBackgroundColor(Color.parseColor("#36BDBD"));
+            btnPauseResume.setImageResource(android.R.drawable.ic_media_pause);
+            Toast.makeText(requireContext(), "Ride resumed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void startLocationUpdates() {
         LocationRequest request = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000)
                 .setMinUpdateDistanceMeters(2f)
                 .build();
@@ -116,19 +155,16 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult result) {
+                if (currentRide.isPaused()) return; // Don't track if paused
+
                 Location newLocation = result.getLastLocation();
                 if (newLocation == null) return;
 
                 LatLng currentLatLng = new LatLng(newLocation.getLatitude(), newLocation.getLongitude());
                 pathPoints.add(currentLatLng);
                 
-                if (polyline != null) {
-                    polyline.setPoints(pathPoints);
-                }
-                
-                if (mMap != null) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLatLng));
-                }
+                if (polyline != null) polyline.setPoints(pathPoints);
+                if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLatLng));
 
                 if (lastLocation != null) {
                     float distanceDelta = lastLocation.distanceTo(newLocation);
@@ -141,8 +177,12 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
             }
         };
 
-        fusedLocationClient.requestLocationUpdates(request, locationCallback, null);
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.requestLocationUpdates(request, locationCallback, null);
+        }
+    }
 
+    private void startTimer() {
         timerRunnable = new Runnable() {
             @Override
             public void run() {
@@ -167,8 +207,10 @@ public class RideTrackingFragment extends Fragment implements OnMapReadyCallback
         tvStatus.setText("Ride Complete!");
         btnStartStop.setText("Start Ride");
         btnStartStop.setBackgroundTintList(
-                android.content.res.ColorStateList.valueOf(Color.parseColor("#36BDBD"))); // Electric Teal for Start
+                android.content.res.ColorStateList.valueOf(Color.parseColor("#36BDBD")));
+        
         statusIndicator.setBackgroundColor(Color.GRAY);
+        btnPauseResume.setVisibility(View.GONE);
 
         Toast.makeText(requireContext(),
                 String.format("Ride saved! %.2f km in %s",
